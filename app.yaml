@@ -15,10 +15,6 @@ handlers:
 - url: /images
   static_dir: images
 
-#Endpoints handler
-- url: /_ah/spi/.*
-  script: movie_quotes_api.APPLICATION
-
 #Main handler
 - url: .*
   script: main.app
