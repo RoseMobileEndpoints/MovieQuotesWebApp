@@ -14,3 +14,7 @@ ul {
 .movie-title {
 	font-style: italic;
 }
+
+td:first-child {
+	width: 80px;
+}

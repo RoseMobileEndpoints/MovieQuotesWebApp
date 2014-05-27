@@ -14,23 +14,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
+
+from google.appengine.ext import ndb
+import jinja2
 import webapp2
 
-from google.appengine.ext.webapp import template
 from models import MovieQuote
-import time
+
+# Jinja environment instance necessary to use Jinja templates.
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)), autoescape=True)
+
+# Generic key used to group MovieQuotes into an entity group.
+_PARENT_KEY = ndb.Key("Entity", 'moviequote_root')
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        moviequotes = MovieQuote.query().order(-MovieQuote.last_touch_date_time).fetch(30)
-        self.response.out.write(template.render('templates/moviequotes.html', {'moviequotes': moviequotes}))
+        moviequotes = MovieQuote.query(ancestor=_PARENT_KEY).order(-MovieQuote.last_touch_date_time).fetch()
+        template = jinja_env.get_template("templates/moviequotes.html")
+        self.response.out.write(template.render({'moviequotes': moviequotes}))
 
     def post(self):
-        new_quote = MovieQuote(movie_title = self.request.get('movie_title'),
-                               quote = self.request.get('quote'))
+        new_quote = MovieQuote(parent=_PARENT_KEY,
+                               title=self.request.get('title'),
+                               quote=self.request.get('quote'))
         new_quote.put()
-        time.sleep(0.5)
-        self.redirect('/')
+        # time.sleep(0.5)
+        self.redirect(self.request.referer)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
