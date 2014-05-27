@@ -7,12 +7,22 @@ input[name=quote] {
 	width: 300px;
 }
 
+input[name=title] {
+	float: right;
+}
+
+input[type=submit] {
+	float: right;
+}
+
 ul {
     list-style-type: none;
 }
 
 .movie-title {
 	font-style: italic;
+	margin-left: 12px;
+	margin-bottom: 10px;
 }
 
 td:first-child {

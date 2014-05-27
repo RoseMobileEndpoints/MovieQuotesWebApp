@@ -7,30 +7,30 @@
   <link rel="stylesheet" type="text/css" href="static/stylesheets/moviequotes.css" />
 </head>
 <body>
-	<h1>Add a Movie Quote</h1>
+	<h1>Add a new movie quote</h1>
 	<form action="" method="post">
 	  <table>
 		<tr>
-		  <td>Title:</td>
-		  <td><input type="text" name="title"></td>
-		</tr>
-		<tr>
-		  <td>Quote:</td>
+		  <td>Quote</td>
 		  <td><input type="text" name="quote"></td>
 		</tr>
 		<tr>
+		  <td>From movie</td>
+		  <td><input type="text" name="title"></td>
+		</tr>
+		<tr>
 		  <td></td>
-		  <td><input style="float: right;" type="submit" value="Submit"></td>
+		  <td><input type="submit" value="Submit"></td>
 		</tr>
 	  </table>
 	</form>
 	<hr>
-	<h1>Quotes</h1>
+	<h1>Movie quotes</h1>
 	<ul>
 	  {% for moviequote in moviequotes %}
 		<li>
 		  <b>{{moviequote.quote}}</b>
-		  <div class="movie-title" style="margin-left: 12px;">- {{moviequote.title}}</div>
+		  <div class="movie-title">- {{moviequote.title}}</div>
 		</li>
 	  {% endfor %}
 	</ul>
