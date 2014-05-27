@@ -39,7 +39,6 @@ class MainHandler(webapp2.RequestHandler):
                                title=self.request.get('title'),
                                quote=self.request.get('quote'))
         new_quote.put()
-        # time.sleep(0.5)
         self.redirect(self.request.referer)
 
 app = webapp2.WSGIApplication([
