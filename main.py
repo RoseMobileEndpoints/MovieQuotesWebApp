@@ -36,8 +36,8 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         new_quote = MovieQuote(parent=_PARENT_KEY,
-                               movie=self.request.get('movie'),
-                               quote=self.request.get('quote'))
+                               quote=self.request.get('quote'),
+                               movie=self.request.get('movie'))
         new_quote.put()
         self.redirect(self.request.referer)
 
