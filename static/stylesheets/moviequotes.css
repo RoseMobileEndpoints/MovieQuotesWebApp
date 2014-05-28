@@ -7,7 +7,7 @@ input[name=quote] {
 	width: 300px;
 }
 
-input[name=title] {
+input[name=movie] {
 	float: right;
 }
 
@@ -19,12 +19,12 @@ ul {
     list-style-type: none;
 }
 
-.movie-title {
+.movie {
 	font-style: italic;
 	margin-left: 12px;
 	margin-bottom: 10px;
 }
 
 td:first-child {
-	width: 80px;
+	width: 50px;
 }

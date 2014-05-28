@@ -15,8 +15,8 @@
 		  <td><input type="text" name="quote"></td>
 		</tr>
 		<tr>
-		  <td>From movie</td>
-		  <td><input type="text" name="title"></td>
+		  <td>Movie</td>
+		  <td><input type="text" name="movie"></td>
 		</tr>
 		<tr>
 		  <td></td>
@@ -30,7 +30,7 @@
 	  {% for moviequote in moviequotes %}
 		<li>
 		  <b>{{moviequote.quote}}</b>
-		  <div class="movie-title">- {{moviequote.title}}</div>
+		  <div class="movie">- {{moviequote.movie}}</div>
 		</li>
 	  {% endfor %}
 	</ul>
