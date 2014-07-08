@@ -26,16 +26,16 @@ from models import MovieQuote
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)), autoescape=True)
 
 # Generic key used to group MovieQuotes into an entity group.
-_PARENT_KEY = ndb.Key("Entity", 'moviequote_root')
+PARENT_KEY = ndb.Key("Entity", 'moviequote_root')
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        moviequotes = MovieQuote.query(ancestor=_PARENT_KEY).order(-MovieQuote.last_touch_date_time).fetch()
+        moviequotes = MovieQuote.query(ancestor=PARENT_KEY).order(-MovieQuote.last_touch_date_time).fetch()
         template = jinja_env.get_template("templates/moviequotes.html")
         self.response.out.write(template.render({'moviequotes': moviequotes}))
 
     def post(self):
-        new_quote = MovieQuote(parent=_PARENT_KEY,
+        new_quote = MovieQuote(parent=PARENT_KEY,
                                quote=self.request.get('quote'),
                                movie=self.request.get('movie'))
         new_quote.put()
