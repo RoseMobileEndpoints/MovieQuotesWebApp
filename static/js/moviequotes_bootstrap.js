@@ -1,5 +1,3 @@
-//console.log("Hello world");
-
 // Make a company.project namespace
 var rh = rh || {};
 rh.mq = rh.mq || {};
